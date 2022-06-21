@@ -14,9 +14,9 @@ modify the controller and trajectory strategy to finish the track ASAP !!
 4.  out.tout(end) shows the track finish time
 5.  The original controller and trajectory are implemented in init_car_dynamic.m, you can create new files and use new methods to replace the original planning and control algorithm.
 
-![](road.png)
+![](media/road.png)
 
-![](<finish time.png>)
+![](<media/finish time.png>)
 
 # Submission rules
 
