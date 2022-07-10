@@ -8,7 +8,7 @@ B_lon = [0;ModelParams.Cm1/ModelParams.m];
 
 
 %% lateral direction
-vx = 2;
+vx = 20;
 Kr = ModelParams.Dr*ModelParams.Cr*ModelParams.Br;
 Kf = ModelParams.Df*ModelParams.Cf*ModelParams.Bf;
 
@@ -22,22 +22,24 @@ B_lat = [0; 2*Kf/ModelParams.m; 0; 2*Kf*ModelParams.lf/ModelParams.Iz];
 % rank(ctrb(A_lat,B_lat))
 
 % Q_ctrl = diag([4,8,1,8]);
-Q_ctrl = diag([0.5,1,0.5,1]);
-R_ctrl = 15.0;
+Q_ctrl = diag([0.5,0.5,0.1,3]);
+R_ctrl = 30.0;
 [ctrl_K,P,E] = lqr(A_lat, B_lat, Q_ctrl, R_ctrl);
 
 %% lqi
 C_lat = [1,0,0,0];
 sys_lat = ss(A_lat,B_lat,C_lat,[]);
 
-Q_ctrl = diag([1,1,1,1,0.1]);
-R_ctrl = 0.01;
+Q_ctrl = diag([1,1,1,1,1]);
+R_ctrl = 15;
 [ctrl_K_lqi,P,E] = lqi(sys_lat, Q_ctrl, R_ctrl);
 
 %% add trajectory
 %读取路径文件
 % traj=load('trajectory.txt');
-load('traj_diy.mat');
+% load('traj_diy.mat');
+load('traj_mpcc.mat');
+traj = traj_mpcc;
 
 % %% init path
 % %% import an plot track
@@ -78,5 +80,4 @@ load('traj_diy.mat');
 % 
 % traj_info = Simulink.Bus.createObject(traj);
 % traj_bus = evalin('base', traj_info.busName);
-
 
