@@ -8,7 +8,7 @@ B_lon = [0;ModelParams.Cm1/ModelParams.m];
 
 
 %% lateral direction
-vx = 2;
+vx = 20;
 Kr = ModelParams.Dr*ModelParams.Cr*ModelParams.Br;
 Kf = ModelParams.Df*ModelParams.Cf*ModelParams.Bf;
 
